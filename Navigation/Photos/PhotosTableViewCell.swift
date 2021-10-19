@@ -1,11 +1,3 @@
-//
-//  PhotosTableViewCell.swift
-//  Navigation
-//
-//  Created by Ильнур Закиров on 12.08.2021.
-//  Copyright © 2021 Artem Novichkov. All rights reserved.
-//
-
 import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
@@ -54,9 +46,6 @@ extension PhotosTableViewCell {
         contentView.addSubview(photoLabel)
         contentView.addSubview(photoStackView)
         contentView.addSubview(cursorImage)
-//        photoLabel.setContentHuggingPriority(.required, for: .vertical)
-//        photoStackView.setContentHuggingPriority(.required, for: .vertical)
-//        cursorImage.setContentHuggingPriority(.required, for: .vertical)
         let constraints = [
             photoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             photoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
@@ -72,7 +61,6 @@ extension PhotosTableViewCell {
             
             photoStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             photoStackView.topAnchor.constraint(equalTo: photoLabel.bottomAnchor, constant: 12),
-//            photoStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
             photoStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
         ]
         NSLayoutConstraint.activate(constraints)
@@ -90,7 +78,6 @@ extension PhotosTableViewCell {
             .forEach {
                 $0.isActive = true
             }
-                                      
         photoStackView.addArrangedSubview(image)
     }
     
