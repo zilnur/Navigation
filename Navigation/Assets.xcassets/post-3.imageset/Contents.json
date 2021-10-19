@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "77de875a12a783eb_2011-07-14t095929z_01_seo105_rtridsp_3_korea.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "77de875a12a783eb_2011-07-14t095929z_01_seo105_rtridsp_3_korea-1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "77de875a12a783eb_2011-07-14t095929z_01_seo105_rtridsp_3_korea-2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -10,7 +10,9 @@ import UIKit
 
 final class FeedViewController: UIViewController {
     
-    let post: Post = Post(title: "Пост")
+    
+    let button1ToPost = UIButton()
+    let button2ToPost = UIButton()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -25,6 +27,30 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(type(of: self), #function)
+        
+        let stack = UIStackView(arrangedSubviews: [self.button1ToPost, self.button2ToPost])
+
+        self.view.addSubview(stack)
+        
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        [
+        stack.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: 0),
+        stack.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0)
+        ]
+        .forEach {
+                $0.isActive = true
+            }
+        stack.axis = .vertical
+        stack.spacing = 10
+        stack.backgroundColor = .blue
+        
+        button1ToPost.backgroundColor = .gray
+        button1ToPost.setTitle("Button1", for: .normal)
+        button1ToPost.addTarget(self, action: #selector(toPostVC), for: .touchUpInside)
+        
+        button2ToPost.backgroundColor = .red
+        button2ToPost.setTitle("Button2", for: .normal)
+        button2ToPost.addTarget(self, action: #selector(toPostVC), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,9 +87,15 @@ final class FeedViewController: UIViewController {
         guard segue.identifier == "post" else {
             return
         }
-        guard let postViewController = segue.destination as? PostViewController else {
+        guard segue.destination is PostViewController else {
             return
         }
-        postViewController.post = post
+    }
+    
+    @objc func toPostVC() {
+        let sb = storyboard?.instantiateViewController(identifier: "postVC")
+        navigationController?.pushViewController(sb!, animated: true)
     }
 }
+
+
