@@ -2,6 +2,9 @@
 import UIKit
 
 class LoginInViewController: UIViewController {
+    
+    let currentUserService = CurrentUserService()
+    let testUserService = TestUserService()
 
     let scroll = UIScrollView()
     let logo = UIImageView(image:UIImage(named: "logo"))
@@ -126,8 +129,23 @@ class LoginInViewController: UIViewController {
     
     @objc func toProfile() {
         if login.text != "" && pass.text != "" {
-            let profile = ProfileViewController()
-            navigationController?.pushViewController(profile, animated: true)
+#if DEBUG
+            if testUserService.userService(name: login.text!) != nil {
+                let profile = ProfileViewController(userName: login.text!, userService: testUserService)
+                navigationController?.pushViewController(profile, animated: true)
+            } else {
+                login.text = nil
+                login.placeholder = "Пользователь не найден"
+            }
+#else
+            if currentUserService.userService(name: login.text!) != nil {
+                let profile = ProfileViewController(userName: login.text!, userService: currentUserService)
+                navigationController?.pushViewController(profile, animated: true)
+            } else {
+                login.text = nil
+                login.placeholder = "Пользователь не найден"
+            }
+    #endif
         } else {
             login.placeholder = "Необходимо заполнить!"
             pass.placeholder = "Необходимо заполнить!"
