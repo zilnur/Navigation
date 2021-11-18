@@ -20,3 +20,23 @@ class Checker {
         }
     }
 }
+
+protocol LogInViewControllerDelegate {
+    func logInCheck(logIn: String, pass: String) -> Bool
+}
+
+class LogInInspector: LogInViewControllerDelegate {
+    func logInCheck(logIn: String, pass: String) -> Bool {
+        return Checker.shared.check(login: logIn, pass: pass)
+}
+}
+
+protocol LoginFactory {
+    func loginFactory() -> LogInInspector
+}
+
+class NewLoginFactory: LoginFactory {
+    func loginFactory() -> LogInInspector {
+        return LogInInspector()
+    }
+}
