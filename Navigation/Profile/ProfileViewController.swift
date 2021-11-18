@@ -141,7 +141,7 @@ extension ProfileViewController:UITableViewDelegate {
 extension ProfileViewController {
     func profileHWUser() {
         let user = userService.userService(name: userName)
-        profileHW.name.text = user?.fullName
+//        profileHW.name.text = user?.fullName
         profileHW.status.text = user?.status
         profileHW.avatar.image = user?.avatar
     }
