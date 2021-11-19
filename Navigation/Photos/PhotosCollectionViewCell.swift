@@ -2,13 +2,7 @@
 import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
-    
-    var photos: Photo? {
-        didSet {
-            photoInCollection.image = UIImage(named: photos!.photo)
-        }
-    }
-    
+
     var photoInCollection: UIImageView = {
         let photo = UIImageView()
         photo.translatesAutoresizingMaskIntoConstraints = false

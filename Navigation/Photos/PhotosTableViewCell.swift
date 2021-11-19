@@ -30,6 +30,7 @@ class PhotosTableViewCell: UITableViewCell {
 
     var cursorImage: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(systemName: "arrow.forward")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -54,9 +55,6 @@ extension PhotosTableViewCell {
         contentView.addSubview(photoLabel)
         contentView.addSubview(photoStackView)
         contentView.addSubview(cursorImage)
-//        photoLabel.setContentHuggingPriority(.required, for: .vertical)
-//        photoStackView.setContentHuggingPriority(.required, for: .vertical)
-//        cursorImage.setContentHuggingPriority(.required, for: .vertical)
         let constraints = [
             photoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
             photoLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
