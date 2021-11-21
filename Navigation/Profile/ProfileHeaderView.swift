@@ -20,17 +20,27 @@ class ProfileHederView: UIView {
         return view
     }()
     
-    let button: UIButton = {
-        let button = UIButton()
+//    let button: UIButton = {
+//        let button = UIButton()
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.layer.backgroundColor = UIColor.systemBlue.cgColor
+//        button.layer.cornerRadius = 4
+//        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+//        button.layer.shadowRadius = 4
+//        button.layer.shadowColor = UIColor.black.cgColor
+//        button.layer.shadowOpacity = 0.7
+//        button.setTitle("Show status", for: .normal)
+//        button.addTarget(self, action: #selector(setStatus), for: .touchUpInside)
+//        return button
+//    }()
+    
+    private lazy var button: CustomButton = {
+        let button = CustomButton(title: "Show status", titleColor: .white, backgroundColor: .systemBlue)
+        button.onTap = {[weak self] in
+            self?.status.text = self?.statusText
+            self?.statusTextField.text = nil
+            }
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.backgroundColor = UIColor.systemBlue.cgColor
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
-        button.setTitle("Show status", for: .normal)
-        button.addTarget(self, action: #selector(setStatus), for: .touchUpInside)
         return button
     }()
     
@@ -65,7 +75,7 @@ class ProfileHederView: UIView {
         return textField
     }()
     
-    var statusText = ""
+    var statusText = String()
     
     let closeButton: UIButton = {
         let button = UIButton()
@@ -82,10 +92,10 @@ class ProfileHederView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @ objc func setStatus() {
-        status.text = statusText
-        statusTextField.text = nil
-    }
+//    @ objc func setStatus() {
+//        status.text = statusText
+//        statusTextField.text = nil
+//    }
     
     @ objc func newStatus(_ : UITextField) {
         statusText = statusTextField.text ?? ""
