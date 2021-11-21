@@ -25,8 +25,7 @@ final class FeedViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        print(type(of: self), #function)
+        view.backgroundColor = .green
         
         let stack = UIStackView(arrangedSubviews: [self.button1ToPost, self.button2ToPost])
 
