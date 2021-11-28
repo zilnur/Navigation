@@ -1,13 +1,8 @@
 
 import UIKit
+import iOSIntPackage
 
 class PhotosCollectionViewCell: UICollectionViewCell {
-    
-    var photos: Photo? {
-        didSet {
-            photoInCollection.image = UIImage(named: photos!.photo)
-        }
-    }
     
     var photoInCollection: UIImageView = {
         let photo = UIImageView()

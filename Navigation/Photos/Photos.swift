@@ -1,36 +1,38 @@
-struct Photo {
-    let photo: String
-}
-
-struct PhotoSection {
-    let photo: [Photo]
-}
+import UIKit
+import iOSIntPackage
 
 struct Photos {
-    static let photos = [
-        PhotoSection(
-            photo: [
-                Photo(photo: "fry1"),
-                Photo(photo: "fry2"),
-                Photo(photo: "fry3"),
-                Photo(photo: "fry4"),
-                Photo(photo: "fry5"),
-                Photo(photo: "fry6"),
-                Photo(photo: "fry7"),
-                Photo(photo: "fry8"),
-                Photo(photo: "fry9"),
-                Photo(photo: "fry10"),
-                Photo(photo: "fry11"),
-                Photo(photo: "fry12"),
-                Photo(photo: "fry13"),
-                Photo(photo: "fry14"),
-                Photo(photo: "fry15"),
-                Photo(photo: "fry16"),
-                Photo(photo: "fry17"),
-                Photo(photo: "fry18"),
-                Photo(photo: "fry19"),
-                Photo(photo: "fry20"),
-            ]
-        )
+    var photo: [UIImage?]
+}
+
+struct Photo {
+    
+    static var photos: [UIImage] = [
+        UIImage(named: "fry1")!,
+        UIImage(named: "fry2")!,
+        UIImage(named: "fry3")!,
+        UIImage(named: "fry4")!,
+        UIImage(named: "fry5")!,
+        UIImage(named: "fry6")!,
+        UIImage(named: "fry7")!,
     ]
+    
+    static var photos2: [UIImage] = [
+        UIImage(named: "fry8")!,
+        UIImage(named: "fry9")!,
+        UIImage(named: "fry10")!,
+        UIImage(named: "fry11")!,
+        UIImage(named: "fry12")!,
+        UIImage(named: "fry13")!,
+        UIImage(named: "fry14")!,
+        UIImage(named: "fry15")!,
+    ]
+    static var photos1: [UIImage] = [
+        UIImage(named: "fry16")!,
+        UIImage(named: "fry17")!,
+        UIImage(named: "fry18")!,
+        UIImage(named: "fry19")!,
+        UIImage(named: "fry20")!
+    ]
+    
 }
