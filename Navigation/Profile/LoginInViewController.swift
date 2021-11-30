@@ -20,7 +20,7 @@ class LoginInViewController: UIViewController {
         log1n.placeholder = "Email or Phone"
         return log1n
     }()
-    lazy var pass : UITextField = {
+    var pass : UITextField = {
         let passTF = UITextField()
         passTF.layer.borderWidth = 0.5
         passTF.layer.borderColor = UIColor.lightGray.cgColor
