@@ -76,7 +76,7 @@
 		BC9F642526BE6F3000604D6C /* LoginInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInViewController.swift; sourceTree = "<group>"; };
 		BCDA8710271ED15500301BD5 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCDA8712271ED15500301BD5 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
-		BCDA8721271ED63000301BD5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Post.swift; path = Navigation/Post.swift; sourceTree = SOURCE_ROOT; };
+		BCDA8721271ED63000301BD5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Post.swift; path = StorageService/Post.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +122,6 @@
 				BC12CA1E26C5BA2D0080A3BB /* Photos */,
 				BC2CD60C26AAC55A000A144E /* Profile */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
-				BCDA8721271ED63000301BD5 /* Post.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
 				060782B5250CE27700A87020 /* FeedViewController.swift */,
 				060782B7250CE27700A87020 /* Main.storyboard */,
@@ -162,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				BCDA8712271ED15500301BD5 /* StorageService.h */,
+				BCDA8721271ED63000301BD5 /* Post.swift */,
 			);
 			path = StorageService;
 			sourceTree = "<group>";

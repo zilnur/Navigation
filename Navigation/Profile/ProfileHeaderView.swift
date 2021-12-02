@@ -1,5 +1,6 @@
 
 import UIKit
+import StorageService
 
 class ProfileHederView: UIView {
     
