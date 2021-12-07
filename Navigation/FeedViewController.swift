@@ -92,8 +92,8 @@ final class FeedViewController: UIViewController {
     }
     
     @objc func toPostVC() {
-        let psotVC = PostViewController()
-        navigationController?.pushViewController(psotVC, animated: true)
+        let postVC = PostViewController()
+        navigationController?.pushViewController(postVC, animated: true)
     }
 }
 

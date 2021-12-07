@@ -70,8 +70,6 @@ extension PhotosViewController {
             photoCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             photoCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-//            timeLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
-//            timeLabel.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
             timeLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -25),
             timeLabel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             timeLabel.heightAnchor.constraint(equalToConstant: 50),
@@ -111,24 +109,31 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 
 extension PhotosViewController {
     func editTime() {
-        DispatchQueue.global(qos: .userInteractive).async {
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             let timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                self.time -= 1
+                self?.time -= 1
                 DispatchQueue.main.async {
-                    self.timeLabel.text = "\(self.time)"
+                    if let trueTime = self?.time {
+                    self?.timeLabel.text = "\(trueTime)"
+                    }
                 }
-                if self.time == 0 {
+                if self?.time == 0 {
                     let photo = Photos.photos.randomElement()
                     if let image = photo {
                         let index = Photos.photos.firstIndex(of: image)
                         DispatchQueue.main.async {
-                            self.photoSection.append(image)
-                            Photos.photos.remove(at: index!)
+                            if let trueImage = image {
+                            self?.photoSection.append(trueImage)
+                            }
+                            if let trueIndex = index {
+                            Photos.photos.remove(at: trueIndex)
+                            }
                         }
                     }
-                    self.time = 3
+                    self?.time = 3
                 }
                 if Photos.photos.count == 0 {
+                    self?.timeLabel.alpha = 0
                     timer.invalidate()
                 }
             }
