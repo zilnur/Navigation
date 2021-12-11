@@ -1,14 +1,8 @@
-//
-//  PhotosViewController.swift
-//  Navigation
-//
-//  Created by Ильнур Закиров on 14.08.2021.
-//  Copyright © 2021 Artem Novichkov. All rights reserved.
-//
-
 import UIKit
 
 class PhotosViewController: UIViewController {
+    
+    var notError = Bool.random()
 
     private lazy var photoCollection : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -39,7 +33,16 @@ class PhotosViewController: UIViewController {
         setupView()
         self.navigationController?.isNavigationBarHidden = false
         
-        self.photoSection = Photos.photos
+        DispatchQueue.global().async { [weak self] in
+            self?.addPhotos { result in
+                switch result {
+                case .success(let photos):
+                    self?.photoSection = photos
+                case .failure(let error):
+                    self?.present(error.addAlert(), animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,5 +91,15 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+}
+
+extension PhotosViewController {
+    func addPhotos(completion: (Result<[PhotoSection], MyError>) -> Void) {
+        if notError {
+            completion(.success(Photos.photos))
+        } else {
+            completion(.failure(.photosNotFound))
+        }
     }
 }
