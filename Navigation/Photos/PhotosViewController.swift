@@ -38,8 +38,11 @@ class PhotosViewController: UIViewController {
                 switch result {
                 case .success(let photos):
                     self?.photoSection = photos
-                case .failure(let error):
-                    self?.present(error.addAlert(), animated: true, completion: nil)
+                case .failure:
+                    let alarm = UIAlertController(title: "Ошибка!", message: "Не получилось загрузить фотографии", preferredStyle: .alert)
+                    let alertButton = UIAlertAction(title: "ОК", style: .default, handler: nil)
+                    alarm.addAction(alertButton)
+                    self?.present(alarm, animated: true, completion: nil)
                 }
             }
         }

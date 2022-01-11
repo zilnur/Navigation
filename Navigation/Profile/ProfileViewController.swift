@@ -43,7 +43,10 @@ class ProfileViewController: UIViewController {
         do {
             try self.loadInfoOnView()
         } catch {
-            self.present(MyError.postsNotFound.addAlert(), animated: true, completion: nil)
+            let alert = UIAlertController(title: "Ошибка", message: "Новости не найдены", preferredStyle: .alert)
+            let alertButton = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alert.addAction(alertButton)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
