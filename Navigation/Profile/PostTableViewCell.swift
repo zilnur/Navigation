@@ -1,16 +1,32 @@
 
 import UIKit
+<<<<<<< HEAD
 import StorageService
 
 class PostTableViewCell: UITableViewCell {
     
     var post: PostVK? {
+=======
+import iOSIntPackage
+
+class PostTableViewCell: UITableViewCell {
+    
+    var imageP = ImageProcessor()
+    
+    var post: Post? {
+>>>>>>> feature-iosint/2
         didSet {
             postAutor.text = post!.autor
-            postImage.image = UIImage(named: post!.image!)
+            postImage.image = UIImage(named: post!.image)
+            
+            if let image = UIImage(named: post!.image) {
+                imageP.processImage(sourceImage: image, filter: post!.filtr) {
+                    image in postImage.image = image
+                }
+            }
             postDescription.text = post!.description
-            postLikes.text = "Likes: \(String(post!.likes!))"
-            postViews.text = "Views: \(String(post!.views!))"
+            postLikes.text = "Likes: \(String(post!.likes))"
+            postViews.text = "Views: \(String(post!.views))"
         }
     }
     

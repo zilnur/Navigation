@@ -1,4 +1,4 @@
-
+import SnapKit
 import UIKit
 import StorageService
 
@@ -110,23 +110,47 @@ extension ProfileHederView {
         closeButton.frame = CGRect(x: self.frame.maxX - 60, y: self.frame.minY + 30, width: 30, height: 30)
         closeButton.alpha = 0
         
-        let constraints = [name.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 132),
-                           name.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-                           
-                           button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-                           button.topAnchor.constraint(equalTo: self.topAnchor, constant: 156),
-                           button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                           button.heightAnchor.constraint(equalToConstant: 50),
-                           button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -48),
-                           
-                           statusTextField.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -16),
-                           statusTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 132),
-                           statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                           statusTextField.heightAnchor.constraint(equalToConstant: 40),
-                           
-                           status.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 132),
-                           status.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -16)
-        ]
-        NSLayoutConstraint.activate(constraints)
+//        let constraints = [name.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 132),
+//                           name.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+//
+//                           button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+//                           button.topAnchor.constraint(equalTo: self.topAnchor, constant: 156),
+//                           button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+//                           button.heightAnchor.constraint(equalToConstant: 50),
+//                           button.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -48),
+//
+//                           statusTextField.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -16),
+//                           statusTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 132),
+//                           statusTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+//                           statusTextField.heightAnchor.constraint(equalToConstant: 40),
+//
+//                           status.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 132),
+//                           status.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -16)
+//        ]
+//        NSLayoutConstraint.activate(constraints)
+        
+        name.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(132)
+            make.top.equalToSuperview().inset(27)
+        }
+        
+        button.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalToSuperview().inset(156)
+            make.bottom.equalToSuperview().inset(48)
+            make.height.equalTo(50)
+        }
+        
+        statusTextField.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(132)
+            make.trailing.equalToSuperview().inset(16)
+            make.bottom.equalTo(button.snp_topMargin).inset(-16)
+            make.height.equalTo(40)
+        }
+        
+        status.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(132)
+            make.bottom.equalTo(statusTextField.snp_topMargin).inset(-16)
+        }
     }
 }
