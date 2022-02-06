@@ -10,9 +10,19 @@ import UIKit
 
 class PostViewController: UIViewController {
     
-    var post: Post?
+    var coordinator: PostCoordinatorDelegate?
+    var post = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .yellow
+        title = post
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(toInfoVC))
     }
+    
+    @objc func toInfoVC() {
+        coordinator?.toInfoVC()
+    }
+    
 }

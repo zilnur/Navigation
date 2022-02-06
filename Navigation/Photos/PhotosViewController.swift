@@ -9,6 +9,8 @@
 import UIKit
 
 class PhotosViewController: UIViewController {
+    
+    weak var coordinator: PhotoCollectionCoordinator?
 
     private lazy var photoCollection : UICollectionView = {
         let layout = UICollectionViewFlowLayout()

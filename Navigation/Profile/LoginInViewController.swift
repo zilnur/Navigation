@@ -1,8 +1,14 @@
 
 import UIKit
 
-class LoginInViewController: UIViewController {
+protocol LoginInViewControllerDelegate {
+    func toPVC()
+}
 
+class LoginInViewController: UIViewController {
+    
+    var coordinator: LoginInViewControllerDelegate?
+    
     let scroll = UIScrollView()
     let logo = UIImageView(image:UIImage(named: "logo"))
     var login : UITextField = {
@@ -127,8 +133,9 @@ class LoginInViewController: UIViewController {
     
     @objc func toProfile() {
         if login.text != "" && pass.text != "" {
-            let profile = ProfileViewController()
-            navigationController?.pushViewController(profile, animated: true)
+//            let profile = ProfileViewController()
+//            navigationController?.pushViewController(profile, animated: true)
+            coordinator?.toPVC()
         } else {
             login.placeholder = "Необходимо заполнить!"
             pass.placeholder = "Необходимо заполнить!"

@@ -1,7 +1,13 @@
 
 import UIKit
 
+protocol ProfileCoordinatorDelegate {
+    func tophotoCollection()
+}
+
 class ProfileViewController: UIViewController {
+    
+    var coordinator: ProfileCoordinatorDelegate?
     
     let profileTable = UITableView(frame: .zero, style: .grouped)
     private var postItem: [PostSection] = [] {
@@ -112,9 +118,8 @@ extension ProfileViewController:UITableViewDataSource{
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let photosVC = PhotosViewController()
         switch  indexPath.row {
-        case 0: navigationController?.pushViewController(photosVC, animated: true)
+        case 0: self.coordinator?.tophotoCollection()
         default: break
         }
     }

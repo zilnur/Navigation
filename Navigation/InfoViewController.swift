@@ -10,13 +10,30 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
+    let button: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Удалить пост", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.backgroundColor = .white
+        button.addTarget(self, action: #selector(showAlert(_:)), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .blue
 
-        // Do any additional setup after loading the view.
+        view.addSubview(button)
+        NSLayoutConstraint.activate([
+            self.button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            self.button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            self.button.heightAnchor.constraint(equalToConstant: 200),
+            self.button.widthAnchor.constraint(equalToConstant: 200)
+        ])
     }
     
-    @IBAction func showAlert(_ sender: Any) {
+    @objc func showAlert(_ sender: Any) {
         let alertController = UIAlertController(title: "Удалить пост?", message: "Пост нельзя будет восстановить", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Отмена", style: .default) { _ in
             print("Отмена")
