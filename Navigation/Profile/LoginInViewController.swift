@@ -54,6 +54,8 @@ class LoginInViewController: UIViewController {
         return button
     }()
     
+    var delegate: LogInViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -125,15 +127,28 @@ class LoginInViewController: UIViewController {
     }
     
     @objc func toProfile() {
-        if login.text != "" && pass.text != "" {
-            let profile = ProfileViewController()
-            navigationController?.pushViewController(profile, animated: true)
+//        if login.text != "" && pass.text != "" {
+//            let profile = ProfileViewController()
+//            navigationController?.pushViewController(profile, animated: true)
+//        } else {
+//            login.placeholder = "Необходимо заполнить!"
+//            pass.placeholder = "Необходимо заполнить!"
+//        }
+        if login.text != nil && pass.text != nil {
+            if delegate?.logInCheck(logIn: login.text!, pass: pass.text!) == true {
+                let profile = ProfileViewController()
+                navigationController?.pushViewController(profile, animated: true)
+            } else {
+                login.text = nil
+                login.placeholder = "Неверный пользователь"
+                pass.text = nil
+                pass.placeholder = "Неверный пароль"
+            }
         } else {
             login.placeholder = "Необходимо заполнить!"
             pass.placeholder = "Необходимо заполнить!"
-        }
-    }
-
+}
+}
 }
             
 private extension LoginInViewController {
