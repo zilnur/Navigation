@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
+    
+    private let imagePublisherFacade = ImagePublisherFacade()
+    private var imagesCollection = [UIImage]()
+    private let photoSection = Photos.photos
 
     private lazy var photoCollection : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -26,12 +31,6 @@ class PhotosViewController: UIViewController {
         return photoCollection
     }()
     
-    private var photoSection:[PhotoSection] = [] {
-        didSet {
-            photoCollection.reloadData()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -39,11 +38,14 @@ class PhotosViewController: UIViewController {
         setupView()
         self.navigationController?.isNavigationBarHidden = false
         
-        self.photoSection = Photos.photos
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 0.1, repeat: 15, userImages: photoSection as? [UIImage])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        imagePublisherFacade.removeSubscription(for: self)
+
     }
     
 }
@@ -61,17 +63,13 @@ extension PhotosViewController {
 }
 
 extension PhotosViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return self.photoSection.count
-    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoSection[section].photo.count
+        return imagesCollection.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photoCollection.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        cell.photos = self.photoSection[indexPath.section].photo[indexPath.row]
+        cell.photoInCollection.image = imagesCollection[indexPath.item]
         return cell
     }
     
@@ -88,5 +86,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        imagesCollection = images
+        photoCollection.reloadData()
     }
 }
