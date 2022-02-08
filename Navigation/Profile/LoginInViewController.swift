@@ -56,6 +56,7 @@ class LoginInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         
         view.addSubview(scroll)
         scroll.backgroundColor = .white
