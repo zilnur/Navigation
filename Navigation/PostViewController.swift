@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import StorageService
 
 class PostViewController: UIViewController {
     
-    var post: Post?
+    var post = Post(title: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()

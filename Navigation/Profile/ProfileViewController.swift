@@ -26,8 +26,13 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        view.backgroundColor = .white
+        
+        #if DEBUG
+            view.backgroundColor = .white
+        #else
+            view.backgroundColor = .green
+        #endif
+        
         view.addSubview(profileTable)
         self.profileTable.translatesAutoresizingMaskIntoConstraints = false
         self.profileTable.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
