@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+<<<<<<< HEAD
 
         guard let _ = (scene as? UIWindowScene) else { return }
         
@@ -23,6 +24,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let tabController = window?.rootViewController as? UITabBarController, let loginNavigation = tabController.viewControllers?.last as? UINavigationController, let loginController = loginNavigation.viewControllers.first as? LoginInViewController {
             loginController.delegate = loginInspectorFactory.loginFactory()
                }
+=======
+        guard let newScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: newScene)
+        window?.makeKeyAndVisible()
+        
+        let tabBC = UITabBarController()
+        tabBC.tabBar.tintColor = UIColor(named: "Color")
+        tabBC.tabBar.backgroundColor = .white
+        
+        let loginVC = LoginInViewController()
+        let loginNVC = UINavigationController(rootViewController: loginVC)
+        loginVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 0)
+        
+        let feedVC = FeedViewController()
+        let feedNVC = UINavigationController(rootViewController: feedVC)
+        feedNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 1)
+        
+        tabBC.viewControllers = [feedNVC, loginNVC]
+        window?.rootViewController = tabBC
+>>>>>>> develop-iosint
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
