@@ -10,6 +10,8 @@ class ProfileViewController: UIViewController {
         }
     }
     let profileHW = ProfileHederView()
+    
+    let random = Bool.random()
 
     
     override func viewDidLoad() {
@@ -32,14 +34,20 @@ class ProfileViewController: UIViewController {
         
         self.profileTable.tableFooterView = UIView()
         
-        self.postItem = Posts.posts
-        
         let refresh = UIRefreshControl()
         self.profileTable.refreshControl = refresh
         
         self.profileHW.avatarView.frame = CGRect(x: profileTable.frame.minX, y: profileTable.frame.minY, width: view.frame.width, height: view.frame.height)
         
         setupView()
+        do {
+            try self.loadInfoOnView()
+        } catch {
+            let alert = UIAlertController(title: "Ошибка", message: "Новости не найдены", preferredStyle: .alert)
+            let alertButton = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alert.addAction(alertButton)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func setupView() {
@@ -94,21 +102,31 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController:UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.postItem.count
+        switch self.postItem.count {
+        case 0:
+            return 1
+        default:
+            return self.postItem.count
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.postItem[section].posts.count + 1
+        switch self.postItem.count {
+        case 0:
+            return 1
+        default:
+            return self.postItem[section].posts.count + 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0 :
-            let cell = profileTable.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
-            return cell
-        default : let cell = profileTable.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
-            cell.post = self.postItem[indexPath.section].posts[indexPath.row - 1]
-            return cell
+            let cell = profileTable.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as? PhotosTableViewCell
+            return cell ?? UITableViewCell()
+        default : let cell = profileTable.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as? PostTableViewCell
+            cell?.post = self.postItem[indexPath.section].posts[indexPath.row - 1]
+            return cell ?? UITableViewCell()
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -122,6 +140,17 @@ extension ProfileViewController:UITableViewDataSource{
 extension ProfileViewController:UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return profileHW
+    }
+}
+
+extension ProfileViewController {
+    func loadInfoOnView() throws {
+        switch random {
+        case true:
+            self.postItem = Posts.posts
+        case false:
+            throw MyError.postsNotFound
+        }
     }
 }
 

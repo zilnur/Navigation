@@ -23,6 +23,7 @@
 		BC2CD61026AAC590000A144E /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CD60F26AAC590000A144E /* ProfileHeaderView.swift */; };
 		BC9CA14026C3F1E500F0BD1E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9CA13F26C3F1E500F0BD1E /* PostTableViewCell.swift */; };
 		BC9F642626BE6F3000604D6C /* LoginInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F642526BE6F3000604D6C /* LoginInViewController.swift */; };
+		BCD4AAC72760E060008E768C /* MyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4AAC62760E060008E768C /* MyError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		BC2CD60F26AAC590000A144E /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		BC9CA13F26C3F1E500F0BD1E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BC9F642526BE6F3000604D6C /* LoginInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInViewController.swift; sourceTree = "<group>"; };
+		BCD4AAC62760E060008E768C /* MyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				060782BF250CE27A00A87020 /* Info.plist */,
 				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
+				BCD4AAC62760E060008E768C /* MyError.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				BC12CA2626C7D68F0080A3BB /* PhotosCollectionViewCell.swift in Sources */,
 				BC12CA2426C7D5690080A3BB /* PhotosViewController.swift in Sources */,
 				BC9F642626BE6F3000604D6C /* LoginInViewController.swift in Sources */,
+				BCD4AAC72760E060008E768C /* MyError.swift in Sources */,
 				BC2CD61026AAC590000A144E /* ProfileHeaderView.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				BC12CA2026C5BA5E0080A3BB /* PhotosTableViewCell.swift in Sources */,
