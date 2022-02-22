@@ -3,6 +3,8 @@ import UIKit
 
 class ProfileHederView: UIView {
     
+    var loginInspector: LogInViewControllerDelegate?
+    
     let avatar: UIImageView = {
         let image = UIImageView(image: UIImage(named: "forAvatar"))
         image.layer.cornerRadius = 50
@@ -73,9 +75,19 @@ class ProfileHederView: UIView {
         return button
     }()
     
+    let signOutButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "reply.fill"), for: .normal)
+        button.backgroundColor = .systemIndigo
+        button.addTarget(self, action: #selector(signOutTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    var onSignOut = {}
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
-        
         addSubviewsAndConstraints()
      }
     required init?(coder: NSCoder) {
@@ -102,6 +114,7 @@ extension ProfileHederView {
         self.addSubview(statusTextField)
         self.addSubview(avatarView)
         self.addSubview(avatar)
+        self.addSubview(signOutButton)
         self.avatarView.addSubview(closeButton)
         
         avatarView.frame = CGRect(x: self.frame.minX + 12, y: self.frame.minY + 12, width: 100, height: 100)
@@ -124,8 +137,20 @@ extension ProfileHederView {
                            statusTextField.heightAnchor.constraint(equalToConstant: 40),
                            
                            status.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 132),
-                           status.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -16)
+                           status.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -16),
+                           
+                           signOutButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+                           signOutButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
+                           signOutButton.widthAnchor.constraint(equalToConstant: 30),
+                           signOutButton.heightAnchor.constraint(equalToConstant: 30)
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+}
+
+extension ProfileHederView {
+    @objc func signOutTapped() {
+        self.loginInspector?.signOut()
+        onSignOut()
     }
 }

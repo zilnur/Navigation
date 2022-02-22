@@ -3,9 +3,8 @@ import UIKit
 
 class LoginInViewController: UIViewController {
     
-    let currentUserService = CurrentUserService()
-    let testUserService = TestUserService()
-
+    var loginInsperctor: LogInViewControllerDelegate?
+    
     let scroll = UIScrollView()
     let logo = UIImageView(image:UIImage(named: "logo"))
     var login : UITextField = {
@@ -60,6 +59,7 @@ class LoginInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.isHidden = true
         
         view.addSubview(scroll)
         scroll.backgroundColor = .white
@@ -73,6 +73,7 @@ class LoginInViewController: UIViewController {
         scroll.addSubview(loginButton)
         
         setupView()
+        onConfig()
         
         func setupView() {
             let constrains = [
@@ -125,36 +126,20 @@ class LoginInViewController: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        
     }
     
     @objc func toProfile() {
-        if login.text != "" && pass.text != "" {
-#if DEBUG
-            if testUserService.userService(name: login.text!) != nil {
-                let profile = ProfileViewController(userName: login.text!, userService: testUserService)
-                navigationController?.pushViewController(profile, animated: true)
-            } else {
-                login.text = nil
-                login.placeholder = "Пользователь не найден"
-            }
-#else
-            if currentUserService.userService(name: login.text!) != nil {
-                let profile = ProfileViewController(userName: login.text!, userService: currentUserService)
-                navigationController?.pushViewController(profile, animated: true)
-            } else {
-                login.text = nil
-                login.placeholder = "Пользователь не найден"
-            }
-    #endif
-        } else {
-            login.placeholder = "Необходимо заполнить!"
-            pass.placeholder = "Необходимо заполнить!"
-        }
-    }
-
+        guard let logIn = login.text, logIn.isEmpty != true,
+              let password = pass.text, password.isEmpty != true, password.count >= 6 else {
+                  pass.text = nil
+                  pass.placeholder = "Пароль должен быть не менее 6 символов"
+                  return
+              }
+        self.loginInsperctor?.logInCheck(logIn: logIn, pass: password)
 }
-            
+}
+
 private extension LoginInViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -167,5 +152,29 @@ private extension LoginInViewController {
     @objc func keyboardWillHide(notification: NSNotification) {
         scroll.contentInset.bottom = .zero
         scroll.verticalScrollIndicatorInsets = .zero
+    }
+}
+
+extension LoginInViewController {
+    func onConfig() {
+        let profileVC = ProfileViewController()
+        profileVC.loginInspector = self.loginInsperctor
+        self.loginInsperctor?.onCreate = {
+            let alert = UIAlertController(title: "Создать аккаунт?", message: "Хотите создать новый аккаунт?", preferredStyle: .alert)
+            
+            let alertOK = UIAlertAction(title: "Да", style: .default) { _ in
+                guard let login = self.login.text, let pass = self.pass.text else {return}
+                self.loginInsperctor?.createAcc(login: login, pass: pass)
+                self.loginInsperctor?.onSignIN()
+            }
+            let alertNO = UIAlertAction(title: "Нет", style: .cancel) { _ in}
+            [alertNO, alertOK].forEach(alert.addAction(_:))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        self.loginInsperctor?.onSignIN = {
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    
     }
 }
