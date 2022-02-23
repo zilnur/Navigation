@@ -3,7 +3,7 @@ import UIKit
 
 class ProfileHederView: UIView {
     
-    var loginInspector: LogInViewControllerDelegate?
+    var loginInspector: LogInInspector?
     
     let avatar: UIImageView = {
         let image = UIImageView(image: UIImage(named: "forAvatar"))

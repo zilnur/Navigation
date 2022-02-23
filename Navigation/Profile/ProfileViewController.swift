@@ -4,7 +4,7 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
-    var loginInspector: LogInViewControllerDelegate? = nil
+    var loginInspector: LogInInspector?
     
     let profileTable = UITableView(frame: .zero, style: .grouped)
     private var postItem: [PostSection] = [] {

@@ -3,40 +3,35 @@ import FirebaseAuth
 import UIKit
 
 protocol LogInViewControllerDelegate {
-    var onSignIN: () -> () { get set }
-    var onCreate: () -> () { get set }
-    
-    func logInCheck(logIn: String?, pass: String?)
-    func createAcc(login: String, pass: String)
-    func signOut()
+    func didAuthSuccess()
+    func didAuthFailed(reason: AuthErrorCode?)
  }
 
- class LogInInspector: LogInViewControllerDelegate {
+ struct LogInInspector {
      
-     var onSignIN = {}
-     var onCreate = {}
-     func logInCheck(logIn: String?, pass: String?) {
-         guard let login = logIn, let pass = pass else {return}
-         FirebaseAuth.Auth.auth().signIn(withEmail: login, password: pass) { [weak self] result , error in
-             
-             guard error == nil else {
-                 self?.onCreate()
-                 return
-             }
-             print("OK")
-             self?.onSignIN()
-         }
- }
+     var loginInspectorDelegate: LogInViewControllerDelegate?
      
-     func createAcc(login: String, pass: String)  {
-         FirebaseAuth.Auth.auth().createUser(withEmail: login, password: pass) { [weak self] result , error in
-             
+     func auth(login: String, pass: String) {
+         Auth.auth().signIn(withEmail: login, password: pass) {  user, error in
              guard error == nil else {
+                 let reason = AuthErrorCode(rawValue: error!._code)
+                 self.loginInspectorDelegate?.didAuthFailed(reason: reason)
                  print("\(String(describing: error))")
                  return
              }
-             print("OK")
-             self?.onSignIN()
+             self.loginInspectorDelegate?.didAuthSuccess()
+             print("\(String(describing: user))")
+         }
+     }
+     
+     func createAcc(login: String?, pass: String?)  {
+         guard let logIn = login, let password = pass else {return}
+         FirebaseAuth.Auth.auth().createUser(withEmail: logIn, password: password) { result , error in
+             
+             guard error == nil else {
+                 return
+             }
+             self.loginInspectorDelegate?.didAuthSuccess()
          }
      }
      
