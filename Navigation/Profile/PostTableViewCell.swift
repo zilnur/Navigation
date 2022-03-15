@@ -92,13 +92,11 @@ extension PostTableViewCell {
             postAutor.bottomAnchor.constraint(equalTo: postImage.topAnchor),
             
             postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-//            postImage.topAnchor.constraint(equalTo: postAutor.bottomAnchor),
             postImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -32),
             postImage.heightAnchor.constraint(equalTo: postImage.widthAnchor),
             postImage.bottomAnchor.constraint(equalTo: postDescription.topAnchor),
             
             postDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-//            postDescription.topAnchor.constraint(equalTo: postImage.bottomAnchor),
             postDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             postDescription.bottomAnchor.constraint(equalTo: postLikes.topAnchor, constant: -16),
             

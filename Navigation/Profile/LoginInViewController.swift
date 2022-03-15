@@ -1,10 +1,8 @@
 
 import UIKit
+import RealmSwift
 
 class LoginInViewController: UIViewController {
-    
-    let currentUserService = CurrentUserService()
-    let testUserService = TestUserService()
 
     let scroll = UIScrollView()
     let logo = UIImageView(image:UIImage(named: "logo"))
@@ -108,16 +106,27 @@ class LoginInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
-                                               name: UIResponder.keyboardWillShowNotification,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
+        guard UserDefaults.standard.bool(forKey: "isDBInstalled") else {
+
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(keyboardWillShow(notification:)),
+                                                   name: UIResponder.keyboardWillShowNotification,
+                                                   object: nil)
+            
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(keyboardWillHide(notification:)),
+                                                   name: UIResponder.keyboardWillHideNotification,
+                                                   object: nil)
+            return
+        }
+        let realm = try! Realm()
+        let users = realm.objects(User.self)
+        let user = users[0]
+        print(user)
+        self.login.text = user.login
+        self.pass.text = user.pass
+        let profileVC = ProfileViewController(user: user)
+        navigationController?.pushViewController(profileVC, animated: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -129,28 +138,15 @@ class LoginInViewController: UIViewController {
     }
     
     @objc func toProfile() {
-        if login.text != "" && pass.text != "" {
-#if DEBUG
-            if testUserService.userService(name: login.text!) != nil {
-                let profile = ProfileViewController(userName: login.text!, userService: testUserService)
-                navigationController?.pushViewController(profile, animated: true)
-            } else {
-                login.text = nil
-                login.placeholder = "Пользователь не найден"
-            }
-#else
-            if currentUserService.userService(name: login.text!) != nil {
-                let profile = ProfileViewController(userName: login.text!, userService: currentUserService)
-                navigationController?.pushViewController(profile, animated: true)
-            } else {
-                login.text = nil
-                login.placeholder = "Пользователь не найден"
-            }
-    #endif
-        } else {
-            login.placeholder = "Необходимо заполнить!"
-            pass.placeholder = "Необходимо заполнить!"
+        let realm = try! Realm()
+        guard let login = login.text, let pass = pass.text else {
+            return
         }
+        let user = User(login: login, pass: pass)
+        try! realm.write {realm.add(user)}
+        UserDefaults.standard.set(true, forKey: "isDBInstalled")
+        let profileVC = ProfileViewController(user: user)
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 
 }
