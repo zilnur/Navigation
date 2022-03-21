@@ -2,9 +2,6 @@
 import UIKit
 
 class LoginInViewController: UIViewController {
-    
-    let currentUserService = CurrentUserService()
-    let testUserService = TestUserService()
 
     let scroll = UIScrollView()
     let logo = UIImageView(image:UIImage(named: "logo"))
@@ -99,7 +96,8 @@ class LoginInViewController: UIViewController {
                 loginButton.leadingAnchor.constraint(equalTo: scroll.leadingAnchor, constant: 16),
                 loginButton.topAnchor.constraint(equalTo: pass.bottomAnchor, constant: 16),
                 loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                loginButton.heightAnchor.constraint(equalToConstant: 50)
+                loginButton.heightAnchor.constraint(equalToConstant: 50),
+                loginButton.bottomAnchor.constraint(equalTo: scroll.bottomAnchor)
                 
             ]
             NSLayoutConstraint.activate(constrains)
@@ -129,30 +127,9 @@ class LoginInViewController: UIViewController {
     }
     
     @objc func toProfile() {
-        if login.text != "" && pass.text != "" {
-#if DEBUG
-            if testUserService.userService(name: login.text!) != nil {
-                let profile = ProfileViewController(userName: login.text!, userService: testUserService)
-                navigationController?.pushViewController(profile, animated: true)
-            } else {
-                login.text = nil
-                login.placeholder = "Пользователь не найден"
-            }
-#else
-            if currentUserService.userService(name: login.text!) != nil {
-                let profile = ProfileViewController(userName: login.text!, userService: currentUserService)
-                navigationController?.pushViewController(profile, animated: true)
-            } else {
-                login.text = nil
-                login.placeholder = "Пользователь не найден"
-            }
-    #endif
-        } else {
-            login.placeholder = "Необходимо заполнить!"
-            pass.placeholder = "Необходимо заполнить!"
-        }
+        let profileVC = ProfileViewController()
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
-
 }
             
 private extension LoginInViewController {
