@@ -15,6 +15,8 @@
 		060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C5250CEB0A00A87020 /* InfoViewController.swift */; };
 		060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C7250CEE5D00A87020 /* PostViewController.swift */; };
 		060782CA250CEE7200A87020 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C9250CEE7200A87020 /* Post.swift */; };
+		BC06762827E62D8A00E19156 /* DataBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06762727E62D8A00E19156 /* DataBaseService.swift */; };
+		BC06762A27E6332900E19156 /* LikedPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC06762927E6332900E19156 /* LikedPostsViewController.swift */; };
 		BC12CA2026C5BA5E0080A3BB /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12CA1F26C5BA5E0080A3BB /* PhotosTableViewCell.swift */; };
 		BC12CA2426C7D5690080A3BB /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12CA2326C7D5690080A3BB /* PhotosViewController.swift */; };
 		BC12CA2626C7D68F0080A3BB /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12CA2526C7D68F0080A3BB /* PhotosCollectionViewCell.swift */; };
@@ -24,6 +26,7 @@
 		BC518DD127B2E6FA0099F1D4 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC518DD027B2E6FA0099F1D4 /* NetworkService.swift */; };
 		BC9CA14026C3F1E500F0BD1E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9CA13F26C3F1E500F0BD1E /* PostTableViewCell.swift */; };
 		BC9F642626BE6F3000604D6C /* LoginInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F642526BE6F3000604D6C /* LoginInViewController.swift */; };
+		BCE5F4CF27E508300009B74B /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCE5F4CD27E508300009B74B /* DataBaseModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,8 @@
 		060782C5250CEB0A00A87020 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		060782C7250CEE5D00A87020 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		060782C9250CEE7200A87020 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		BC06762727E62D8A00E19156 /* DataBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseService.swift; sourceTree = "<group>"; };
+		BC06762927E6332900E19156 /* LikedPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPostsViewController.swift; sourceTree = "<group>"; };
 		BC12CA1F26C5BA5E0080A3BB /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		BC12CA2326C7D5690080A3BB /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		BC12CA2526C7D68F0080A3BB /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -46,6 +51,7 @@
 		BC518DD027B2E6FA0099F1D4 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BC9CA13F26C3F1E500F0BD1E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BC9F642526BE6F3000604D6C /* LoginInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInViewController.swift; sourceTree = "<group>"; };
+		BCE5F4CE27E508300009B74B /* DataBaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBaseModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,9 +84,11 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				BCE5F4CC27E508060009B74B /* DataBase */,
 				BC12CA1E26C5BA2D0080A3BB /* Photos */,
 				BC2CD60C26AAC55A000A144E /* Profile */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
+				BC06762927E6332900E19156 /* LikedPostsViewController.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
 				060782B5250CE27700A87020 /* FeedViewController.swift */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
@@ -114,6 +122,15 @@
 				060782C9250CEE7200A87020 /* Post.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		BCE5F4CC27E508060009B74B /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				BCE5F4CD27E508300009B74B /* DataBaseModel.xcdatamodeld */,
+				BC06762727E62D8A00E19156 /* DataBaseService.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,12 +208,15 @@
 			files = (
 				BC12CA2626C7D68F0080A3BB /* PhotosCollectionViewCell.swift in Sources */,
 				BC12CA2426C7D5690080A3BB /* PhotosViewController.swift in Sources */,
+				BC06762827E62D8A00E19156 /* DataBaseService.swift in Sources */,
 				BC9F642626BE6F3000604D6C /* LoginInViewController.swift in Sources */,
 				BC2CD61026AAC590000A144E /* ProfileHeaderView.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
+				BC06762A27E6332900E19156 /* LikedPostsViewController.swift in Sources */,
 				BC12CA2026C5BA5E0080A3BB /* PhotosTableViewCell.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
+				BCE5F4CF27E508300009B74B /* DataBaseModel.xcdatamodeld in Sources */,
 				BC9CA14026C3F1E500F0BD1E /* PostTableViewCell.swift in Sources */,
 				BC12CA2826C7DA470080A3BB /* Photos.swift in Sources */,
 				BC518DD127B2E6FA0099F1D4 /* NetworkService.swift in Sources */,
@@ -395,6 +415,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BCE5F4CD27E508300009B74B /* DataBaseModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BCE5F4CE27E508300009B74B /* DataBaseModel.xcdatamodel */,
+			);
+			currentVersion = BCE5F4CE27E508300009B74B /* DataBaseModel.xcdatamodel */;
+			path = DataBaseModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 060782A6250CE27700A87020 /* Project object */;
 }

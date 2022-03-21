@@ -27,11 +27,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         loginNVC.navigationBar.backgroundColor = .white
         loginVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 0)
         
+        let likedPostsVC = LikedPostsViewController()
+        let lpvcNC = UINavigationController(rootViewController: likedPostsVC)
+        lpvcNC.tabBarItem = UITabBarItem(title: "Liked Posts", image: UIImage(systemName: "hand.thumbsup"), tag: 2)
+        
         let feedVC = FeedViewController()
         let feedNVC = UINavigationController(rootViewController: feedVC)
         feedNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 1)
         
-        tabBC.viewControllers = [feedNVC, loginNVC]
+        tabBC.viewControllers = [feedNVC,lpvcNC, loginNVC]
         window?.rootViewController = tabBC
     }
 

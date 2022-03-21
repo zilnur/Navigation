@@ -3,13 +3,13 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
-    var post: Post? {
+    var post: Post {
         didSet {
-            postAutor.text = post!.autor
-            postImage.image = UIImage(named: post!.image!)
-            postDescription.text = post!.description
-            postLikes.text = "Likes: \(String(post!.likes!))"
-            postViews.text = "Views: \(String(post!.views!))"
+            postAutor.text = post.autor
+            postImage.image = UIImage(named: post.image)
+            postDescription.text = post.description
+            postLikes.text = "Likes: \(String(post.likes))"
+            postViews.text = "Views: \(String(post.views))"
         }
     }
     
@@ -59,11 +59,14 @@ class PostTableViewCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        self.post = Post(autor: "", description: "", image: "", likes: 0, views: 0)
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+        cellTaped()
     }
     
     required init?(coder: NSCoder) {
+        self.post = Post(autor: "", description: "", image: "", likes: 0, views: 0)
         super .init(coder: coder)
         setupView()
     }
@@ -110,5 +113,16 @@ extension PostTableViewCell {
             
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+}
+
+extension PostTableViewCell {
+    func cellTaped() {
+            let recognize = UITapGestureRecognizer(target: self, action: #selector(tap))
+            recognize.numberOfTapsRequired = 2
+            self.contentView.addGestureRecognizer(recognize)
+    }
+    @objc func tap() {
+        DataBaseService.shared.getPost(self.post.autor, self.post.description, self.post.image, self.post.likes, self.post.views)
     }
 }
