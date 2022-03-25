@@ -61,6 +61,7 @@ class PostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super .init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+        cellTaped()
     }
     
     required init?(coder: NSCoder) {
@@ -110,5 +111,16 @@ extension PostTableViewCell {
             
         ]
         NSLayoutConstraint.activate(constraints)
+    }
+}
+
+extension PostTableViewCell {
+    func cellTaped() {
+            let recognize = UITapGestureRecognizer(target: self, action: #selector(tap))
+            recognize.numberOfTapsRequired = 2
+            self.contentView.addGestureRecognizer(recognize)
+    }
+    @objc func tap() {
+        DataBaseService.shared.savePost(autor: self.post?.autor, discription: self.post?.description, image: self.post?.image, likes: self.post?.likes, views: self.post?.views)
     }
 }
