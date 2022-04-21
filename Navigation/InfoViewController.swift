@@ -1,31 +1,47 @@
-//
-//  InfoViewController.swift
-//  Navigation
-//
-//  Created by Artem Novichkov on 12.09.2020.
-//  Copyright © 2020 Artem Novichkov. All rights reserved.
-//
 
 import UIKit
 
 class InfoViewController: UIViewController {
+    
+    let label1: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .systemGray
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let label2: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .systemGray
+        label.textAlignment = .center
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .green
+        addSubviews()
     }
-    
-    @IBAction func showAlert(_ sender: Any) {
-        let alertController = UIAlertController(title: "Удалить пост?", message: "Пост нельзя будет восстановить", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { _ in
-            print("Отмена")
-        }
-        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
-            print("Удалить")
-        }
-        alertController.addAction(cancelAction)
-        alertController.addAction(deleteAction)
-        self.present(alertController, animated: true, completion: nil)
+}
+
+extension InfoViewController {
+    func addSubviews() {
+        [self.label1, self.label2].forEach(self.view.addSubview(_:))
+        
+        let constraints = [
+            self.label1.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15),
+            self.label1.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            self.label1.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15),
+            self.label1.heightAnchor.constraint(equalToConstant: 75),
+            
+            self.label2.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15),
+            self.label2.topAnchor.constraint(equalTo: self.label1.bottomAnchor, constant: 15),
+            self.label2.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15),
+            self.label2.heightAnchor.constraint(equalToConstant: 75)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
     }
 }

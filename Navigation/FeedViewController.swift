@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  Navigation
-//
-//  Created by Artem Novichkov on 12.09.2020.
-//  Copyright © 2020 Artem Novichkov. All rights reserved.
-//
 
 import UIKit
 
@@ -27,6 +20,7 @@ final class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(type(of: self), #function)
+        self.view.backgroundColor = .white
         
         let stack = UIStackView(arrangedSubviews: [self.button1ToPost, self.button2ToPost])
 
@@ -93,9 +87,8 @@ final class FeedViewController: UIViewController {
     }
     
     @objc func toPostVC() {
-        let sb = storyboard?.instantiateViewController(identifier: "postVC")
-        navigationController?.pushViewController(sb!, animated: true)
+        let postVC = PostViewController()
+        navigationController?.pushViewController(postVC, animated: true)
     }
 }
-
 
