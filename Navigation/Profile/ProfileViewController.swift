@@ -68,8 +68,7 @@ class ProfileViewController: UIViewController {
                 self.profileHW.closeButton.alpha = 1
             }
         }, completion: nil)
-        profileTable.allowsSelection = false
-        profileTable.isScrollEnabled = false
+ 
     }
     
     @objc func tapCloseButton() {

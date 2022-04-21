@@ -16,7 +16,7 @@ class LikedPostsViewController: UIViewController {
         }
     }
     
-    var filteredPosts: [Post] = []
+    lazy var filteredPosts: [Post] = []
     
     var isFiltered = false
 
