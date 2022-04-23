@@ -13,7 +13,7 @@ class PostViewController: UIViewController {
     
     @objc func toInfo() {
         let infoVC = InfoViewController()
-        infoVC.modalPresentationStyle = .formSheet
+        infoVC.modalPresentationStyle = .fullScreen
         infoVC.modalTransitionStyle = .coverVertical
         self.present(infoVC, animated: true, completion: nil)
     }
