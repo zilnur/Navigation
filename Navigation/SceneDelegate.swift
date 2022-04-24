@@ -10,6 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let newScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: newScene)
         window?.makeKeyAndVisible()
+        window?.backgroundColor = .white
         
         let tabBC = UITabBarController()
         tabBC.tabBar.tintColor = UIColor(named: "Color")
@@ -17,12 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let loginVC = LoginInViewController()
         let loginNVC = UINavigationController(rootViewController: loginVC)
-        loginNVC.navigationBar.backgroundColor = .white
-        loginVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 0)
+        loginVC.tabBarItem = UITabBarItem(title: "profile".localized(), image: UIImage(systemName: "person.fill"), tag: 0)
         
         let feedVC = FeedViewController()
         let feedNVC = UINavigationController(rootViewController: feedVC)
-        feedNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 1)
+        feedNVC.tabBarItem = UITabBarItem(title: "feed".localized(), image: UIImage(systemName: "house.fill"), tag: 1)
         
         tabBC.viewControllers = [feedNVC, loginNVC]
         window?.rootViewController = tabBC

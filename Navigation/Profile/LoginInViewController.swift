@@ -17,7 +17,7 @@ class LoginInViewController: UIViewController {
         log1n.autocapitalizationType = .none
         log1n.backgroundColor = .systemGray6
         log1n.clipsToBounds = true
-        log1n.placeholder = "Email or Phone"
+        log1n.placeholder = "email_or_phone".localized()
         return log1n
     }()
     var pass : UITextField = {
@@ -33,13 +33,13 @@ class LoginInViewController: UIViewController {
         passTF.backgroundColor = .systemGray6
         passTF.clipsToBounds = true
         passTF.isSecureTextEntry = true
-        passTF.placeholder = "Password"
+        passTF.placeholder = "password".localized()
         return passTF
     }()
     var loginButton : UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "Color")
-        button.setTitle("Log In", for: .normal)
+        button.setTitle("log_in".localized(), for: .normal)
         button.layer.cornerRadius = 10
         button.alpha = 1
         if button.isSelected == true {
@@ -129,8 +129,8 @@ class LoginInViewController: UIViewController {
             let profile = ProfileViewController()
             navigationController?.pushViewController(profile, animated: true)
         } else {
-            login.placeholder = "Необходимо заполнить!"
-            pass.placeholder = "Необходимо заполнить!"
+            login.placeholder = "must_be_filled_in".localized()
+            pass.placeholder = "must_be_filled_in".localized()
         }
     }
 

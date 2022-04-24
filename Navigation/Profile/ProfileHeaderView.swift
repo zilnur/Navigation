@@ -29,7 +29,7 @@ class ProfileHederView: UIView {
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-        button.setTitle("Show status", for: .normal)
+        button.setTitle("set_status".localized(), for: .normal)
         button.addTarget(self, action: #selector(setStatus), for: .touchUpInside)
         return button
     }()

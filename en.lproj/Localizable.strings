@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Ильнур Закиров on 23.04.2022.
+  Copyright © 2022 Artem Novichkov. All rights reserved.
+*/
+
+"feed" = "Feed";
+"profile" = "Profile";
+"button1" = "Button1";
+"button2" = "Button2";
+"email_or_phone" = "Email or Phone";
+"password" = "Password";
+"log_in" = "Log In";
+"must_be_filled_in" = "Must be filled in";
+"set_status" = "Set status";
+"photos" = "Photos";

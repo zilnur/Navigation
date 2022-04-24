@@ -39,11 +39,11 @@ final class FeedViewController: UIViewController {
         stack.backgroundColor = .blue
         
         button1ToPost.backgroundColor = .gray
-        button1ToPost.setTitle("Button1", for: .normal)
+        button1ToPost.setTitle("button1".localized(), for: .normal)
         button1ToPost.addTarget(self, action: #selector(toPostVC), for: .touchUpInside)
         
         button2ToPost.backgroundColor = .red
-        button2ToPost.setTitle("Button2", for: .normal)
+        button2ToPost.setTitle("button2".localized(), for: .normal)
         button2ToPost.addTarget(self, action: #selector(toPostVC), for: .touchUpInside)
     }
     
