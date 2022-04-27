@@ -142,7 +142,10 @@ extension InfoViewController {
             switch locationManager.authorizationStatus {
             case .notDetermined:
                 locationManager.requestWhenInUseAuthorization()
-            case .authorizedAlways, .authorizedWhenInUse:
+            case .authorizedWhenInUse:
+                mapView.showsUserLocation = true
+                locationManager.requestAlwaysAuthorization()
+            case .authorizedAlways:
                 mapView.showsUserLocation = true
             default:
                 break
@@ -150,7 +153,7 @@ extension InfoViewController {
         } else {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
+                locationManager.requestAlwaysAuthorization()
             case .restricted:
                 locationManager.requestAlwaysAuthorization()
             case .denied:
