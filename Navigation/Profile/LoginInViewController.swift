@@ -8,14 +8,14 @@ class LoginInViewController: UIViewController {
     var login : UITextField = {
         let log1n = UITextField()
         log1n.layer.borderWidth = 0.5
-        log1n.layer.borderColor = UIColor.lightGray.cgColor
+        log1n.layer.borderColor = UIColor.createColor(lightMode: .systemGray, darkMode: .gray).cgColor
         log1n.layer.cornerRadius = 10
         log1n.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         log1n.translatesAutoresizingMaskIntoConstraints = false
-        log1n.textColor = .black
+        log1n.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         log1n.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         log1n.autocapitalizationType = .none
-        log1n.backgroundColor = .systemGray6
+        log1n.backgroundColor = UIColor.createColor(lightMode: .systemGray6, darkMode: .systemGray6)
         log1n.clipsToBounds = true
         log1n.placeholder = "Email or Phone"
         return log1n
@@ -23,14 +23,14 @@ class LoginInViewController: UIViewController {
     var pass : UITextField = {
         let passTF = UITextField()
         passTF.layer.borderWidth = 0.5
-        passTF.layer.borderColor = UIColor.lightGray.cgColor
+        passTF.layer.borderColor = UIColor.createColor(lightMode: .systemGray, darkMode: .gray).cgColor
         passTF.layer.cornerRadius = 10
         passTF.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         passTF.translatesAutoresizingMaskIntoConstraints = false
-        passTF.textColor = .black
+        passTF.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         passTF.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         passTF.autocapitalizationType = .none
-        passTF.backgroundColor = .systemGray6
+        passTF.backgroundColor = UIColor.createColor(lightMode: .systemGray6, darkMode: .systemGray6)
         passTF.clipsToBounds = true
         passTF.isSecureTextEntry = true
         passTF.placeholder = "Password"
@@ -38,7 +38,7 @@ class LoginInViewController: UIViewController {
     }()
     var loginButton : UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: "Color")
+        button.backgroundColor = UIColor.createColor(lightMode: UIColor(named: "Color") ?? .blue, darkMode: .orange)
         button.setTitle("Log In", for: .normal)
         button.layer.cornerRadius = 10
         button.alpha = 1
@@ -58,8 +58,9 @@ class LoginInViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(scroll)
-        scroll.backgroundColor = .white
+        scroll.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .gray)
         scroll.translatesAutoresizingMaskIntoConstraints = false
+        self.navigationController?.isNavigationBarHidden = true
         
         scroll.addSubview(logo)
         logo.translatesAutoresizingMaskIntoConstraints = false

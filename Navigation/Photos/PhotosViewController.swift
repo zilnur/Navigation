@@ -15,7 +15,7 @@ class PhotosViewController: UIViewController {
         layout.scrollDirection = .vertical
         
         let photoCollection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        photoCollection.backgroundColor = .white
+        photoCollection.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .gray)
         photoCollection.translatesAutoresizingMaskIntoConstraints = false
         
         photoCollection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: PhotosCollectionViewCell.self))
@@ -34,7 +34,6 @@ class PhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         self.view.addSubview(photoCollection)
         setupView()
         self.navigationController?.isNavigationBarHidden = false

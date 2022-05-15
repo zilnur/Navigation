@@ -15,7 +15,7 @@ class PhotosTableViewCell: UITableViewCell {
         photo.text = "Photos"
         photo.translatesAutoresizingMaskIntoConstraints = false
         photo.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        photo.textColor = .black
+        photo.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         return photo
     }()
     
@@ -24,7 +24,7 @@ class PhotosTableViewCell: UITableViewCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 8
-        stackView.backgroundColor = .white
+        stackView.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .gray)
         return stackView
     }()
 

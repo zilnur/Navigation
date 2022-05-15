@@ -8,7 +8,7 @@ class ProfileHederView: UIView {
         image.layer.cornerRadius = 50
         image.clipsToBounds = true
         image.layer.borderWidth = 3
-        image.layer.borderColor = UIColor.white.cgColor
+        image.layer.borderColor = UIColor.createColor(lightMode: .black, darkMode: .white).cgColor
         return image
     }()
     
@@ -23,7 +23,7 @@ class ProfileHederView: UIView {
     let button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.backgroundColor = UIColor.systemBlue.cgColor
+        button.layer.backgroundColor = UIColor.createColor(lightMode: .blue, darkMode: .orange).cgColor
         button.layer.cornerRadius = 4
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowRadius = 4
@@ -38,7 +38,7 @@ class ProfileHederView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Philip J. Fry"
-        label.textColor = .black
+        label.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
@@ -47,7 +47,7 @@ class ProfileHederView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Shut up and take my money"
-        label.textColor = .gray
+        label.textColor = UIColor.createColor(lightMode: .systemGray, darkMode: .white)
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return label
     }()
@@ -56,10 +56,10 @@ class ProfileHederView: UIView {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.textColor = .black
-        textField.backgroundColor = .white
+        textField.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        textField.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .gray)
         textField.addTarget(self, action: #selector(newStatus(_ :)), for: .editingChanged)
-        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderColor = UIColor.createColor(lightMode: .white, darkMode: .gray).cgColor
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 12
         return textField

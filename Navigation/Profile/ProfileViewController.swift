@@ -14,8 +14,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
                 
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .gray)
         view.addSubview(profileTable)
         self.profileTable.translatesAutoresizingMaskIntoConstraints = false
         self.profileTable.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
