@@ -25,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         feedNVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 1)
         
         tabBC.viewControllers = [feedNVC, loginNVC]
+        tabBC.tabBar.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
+        tabBC.tabBar.tintColor = UIColor.createColor(lightMode: .blue, darkMode: .orange)
         window?.rootViewController = tabBC
     }
 
