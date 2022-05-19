@@ -1,10 +1,10 @@
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
-    let userName: String
-    let userService: UserService
+    var loginInspector: LogInInspector?
     
     let profileTable = UITableView(frame: .zero, style: .grouped)
     private var postItem: [PostSection] = [] {
@@ -14,19 +14,9 @@ class ProfileViewController: UIViewController {
     }
     let profileHW = ProfileHederView()
     
-    init(userName: String, userService: UserService) {
-        self.userName = userName
-        self.userService = userService
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        profileHW.loginInspector = loginInspector
         view.backgroundColor = .white
         view.addSubview(profileTable)
         self.profileTable.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +42,6 @@ class ProfileViewController: UIViewController {
         self.profileHW.avatarView.frame = CGRect(x: profileTable.frame.minX, y: profileTable.frame.minY, width: view.frame.width, height: view.frame.height)
         
         setupView()
-        profileHWUser()
     }
     
     func setupView() {
@@ -102,6 +91,13 @@ class ProfileViewController: UIViewController {
         profileTable.allowsSelection = true
         profileTable.isScrollEnabled = true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.profileHW.onSignOut = {
+            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 extension ProfileViewController:UITableViewDataSource{
@@ -138,11 +134,3 @@ extension ProfileViewController:UITableViewDelegate {
     }
 }
 
-extension ProfileViewController {
-    func profileHWUser() {
-        let user = userService.userService(name: userName)
-//        profileHW.name.text = user?.fullName
-        profileHW.status.text = user?.status
-        profileHW.avatar.image = user?.avatar
-    }
-}

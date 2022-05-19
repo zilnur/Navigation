@@ -1,11 +1,11 @@
 
 import UIKit
+import FirebaseAuth
 
 class LoginInViewController: UIViewController {
     
-    let currentUserService = CurrentUserService()
-    let testUserService = TestUserService()
-
+    var loginInspector: LogInInspector?
+    
     let scroll = UIScrollView()
     let logo = UIImageView(image:UIImage(named: "logo"))
     var login : UITextField = {
@@ -59,7 +59,9 @@ class LoginInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginInspector?.loginInspectorDelegate = self
         self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.isHidden = true
         
         view.addSubview(scroll)
         scroll.backgroundColor = .white
@@ -125,36 +127,10 @@ class LoginInViewController: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        
     }
-    
-    @objc func toProfile() {
-        if login.text != "" && pass.text != "" {
-#if DEBUG
-            if testUserService.userService(name: login.text!) != nil {
-                let profile = ProfileViewController(userName: login.text!, userService: testUserService)
-                navigationController?.pushViewController(profile, animated: true)
-            } else {
-                login.text = nil
-                login.placeholder = "Пользователь не найден"
-            }
-#else
-            if currentUserService.userService(name: login.text!) != nil {
-                let profile = ProfileViewController(userName: login.text!, userService: currentUserService)
-                navigationController?.pushViewController(profile, animated: true)
-            } else {
-                login.text = nil
-                login.placeholder = "Пользователь не найден"
-            }
-    #endif
-        } else {
-            login.placeholder = "Необходимо заполнить!"
-            pass.placeholder = "Необходимо заполнить!"
-        }
-    }
-
 }
-            
+
 private extension LoginInViewController {
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
@@ -168,4 +144,49 @@ private extension LoginInViewController {
         scroll.contentInset.bottom = .zero
         scroll.verticalScrollIndicatorInsets = .zero
     }
+}
+
+extension LoginInViewController: LogInViewControllerDelegate {
+    func didAuthSuccess() {
+        let profileVC = ProfileViewController()
+        profileVC.loginInspector = self.loginInspector
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    func didAuthFailed(reason: AuthErrorCode?) {
+        switch reason {
+        case .wrongPassword:
+            self.pass.text = nil
+            self.pass.placeholder = "Неверный пароль"
+            self.pass.tintColor = .red
+        case .invalidEmail:
+            let alert = UIAlertController(title: "Неверный email", message: "Введен неверный формат email", preferredStyle: .alert)
+            let alertButton = UIAlertAction(title: "ОК", style: .default, handler: nil)
+            alert.addAction(alertButton)
+            self.present(alert, animated: true, completion: nil)
+        case .userNotFound:
+            let alert = UIAlertController(title: "Создать новую учетную запись?", message: "Учетная запись с данным email не создавалась. Хотите создать?", preferredStyle: .alert)
+            let alertYes = UIAlertAction(title: "Да", style: .default) { _ in
+                self.loginInspector?.createAcc(login: self.login.text, pass: self.pass.text)
+            }
+            let alertNo = UIAlertAction(title: "Нет", style: .cancel, handler: nil)
+            [alertYes, alertNo].forEach(alert.addAction(_:))
+            self.present(alert, animated: true)
+        default:
+            break
+        }
+    }
+}
+
+extension LoginInViewController {
+    @objc func toProfile() {
+        guard let logIn = login.text, logIn.isEmpty != true,
+              let password = pass.text, password.isEmpty != true, password.count >= 6 else {
+                  pass.text = nil
+                  pass.placeholder = "Пароль должен быть не менее 6 символов"
+                  return
+              }
+        self.loginInspector?.auth(login: logIn, pass: password)
+        print("123")
+}
 }
