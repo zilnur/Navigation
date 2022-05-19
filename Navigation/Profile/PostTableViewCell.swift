@@ -8,8 +8,8 @@ class PostTableViewCell: UITableViewCell {
             postAutor.text = post!.autor
             postImage.image = UIImage(named: post!.image!)
             postDescription.text = post!.description
-            postLikes.text = "Likes: \(String(post!.likes!))"
-            postViews.text = "Views: \(String(post!.views!))"
+            postLikes.text = (post?.likes!.convert())! + " " + String.localizedStringWithFormat("likes".localized(), post!.likes!)
+            postViews.text = (post?.views?.convert())! + " " + String.localizedStringWithFormat("views".localized(), post!.views!)
         }
     }
     
