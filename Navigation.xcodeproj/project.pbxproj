@@ -24,7 +24,20 @@
 		BC2CD61026AAC590000A144E /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CD60F26AAC590000A144E /* ProfileHeaderView.swift */; };
 		BC9CA14026C3F1E500F0BD1E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9CA13F26C3F1E500F0BD1E /* PostTableViewCell.swift */; };
 		BC9F642626BE6F3000604D6C /* LoginInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F642526BE6F3000604D6C /* LoginInViewController.swift */; };
+		BCA8C273284A44B9005F3C93 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA8C272284A44B9005F3C93 /* LoginHelper.swift */; };
+		BCA8C275284A44E7005F3C93 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA8C274284A44E7005F3C93 /* UserModel.swift */; };
+		BCA8C284284A4E5D005F3C93 /* LoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA8C283284A4E5D005F3C93 /* LoginTest.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BCA8C27E284A4E3F005F3C93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 060782A6250CE27700A87020 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 060782AD250CE27700A87020;
+			remoteInfo = Navigation;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		060782AE250CE27700A87020 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,10 +59,21 @@
 		BC2CD60F26AAC590000A144E /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		BC9CA13F26C3F1E500F0BD1E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BC9F642526BE6F3000604D6C /* LoginInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInViewController.swift; sourceTree = "<group>"; };
+		BCA8C272284A44B9005F3C93 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
+		BCA8C274284A44E7005F3C93 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		BCA8C27A284A4E3F005F3C93 /* NavigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCA8C283284A4E5D005F3C93 /* LoginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		060782AB250CE27700A87020 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCA8C277284A4E3F005F3C93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -63,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				060782B0250CE27700A87020 /* Navigation */,
+				BCA8C27B284A4E3F005F3C93 /* NavigationTests */,
 				060782AF250CE27700A87020 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				060782AE250CE27700A87020 /* Navigation.app */,
+				BCA8C27A284A4E3F005F3C93 /* NavigationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -107,13 +133,39 @@
 		BC2CD60C26AAC55A000A144E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				BC2CD60D26AAC576000A144E /* ProfileViewController.swift */,
+				BCA8C287284A6547005F3C93 /* ProfileModule */,
 				BC9CA13F26C3F1E500F0BD1E /* PostTableViewCell.swift */,
 				BC2CD60F26AAC590000A144E /* ProfileHeaderView.swift */,
-				BC9F642526BE6F3000604D6C /* LoginInViewController.swift */,
+				BCA8C271284A449D005F3C93 /* LoginModule */,
 				060782C9250CEE7200A87020 /* Post.swift */,
+				BCA8C274284A44E7005F3C93 /* UserModel.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		BCA8C271284A449D005F3C93 /* LoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F642526BE6F3000604D6C /* LoginInViewController.swift */,
+				BCA8C272284A44B9005F3C93 /* LoginHelper.swift */,
+			);
+			path = LoginModule;
+			sourceTree = "<group>";
+		};
+		BCA8C27B284A4E3F005F3C93 /* NavigationTests */ = {
+			isa = PBXGroup;
+			children = (
+				BCA8C283284A4E5D005F3C93 /* LoginTest.swift */,
+			);
+			path = NavigationTests;
+			sourceTree = "<group>";
+		};
+		BCA8C287284A6547005F3C93 /* ProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				BC2CD60D26AAC576000A144E /* ProfileViewController.swift */,
+			);
+			path = ProfileModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +188,24 @@
 			productReference = 060782AE250CE27700A87020 /* Navigation.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BCA8C279284A4E3F005F3C93 /* NavigationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCA8C280284A4E3F005F3C93 /* Build configuration list for PBXNativeTarget "NavigationTests" */;
+			buildPhases = (
+				BCA8C276284A4E3F005F3C93 /* Sources */,
+				BCA8C277284A4E3F005F3C93 /* Frameworks */,
+				BCA8C278284A4E3F005F3C93 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BCA8C27F284A4E3F005F3C93 /* PBXTargetDependency */,
+			);
+			name = NavigationTests;
+			productName = NavigationTests;
+			productReference = BCA8C27A284A4E3F005F3C93 /* NavigationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -145,12 +215,16 @@
 				KnownAssetTags = (
 					1,
 				);
-				LastSwiftUpdateCheck = 1170;
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Artem Novichkov";
 				TargetAttributes = {
 					060782AD250CE27700A87020 = {
 						CreatedOnToolsVersion = 11.7;
+					};
+					BCA8C279284A4E3F005F3C93 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = 060782AD250CE27700A87020;
 					};
 				};
 			};
@@ -168,6 +242,7 @@
 			projectRoot = "";
 			targets = (
 				060782AD250CE27700A87020 /* Navigation */,
+				BCA8C279284A4E3F005F3C93 /* NavigationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -180,6 +255,13 @@
 				060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */,
 				060782BB250CE27A00A87020 /* Assets.xcassets in Resources */,
 				060782B9250CE27700A87020 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCA8C278284A4E3F005F3C93 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,14 +282,32 @@
 				060782C6250CEB0A00A87020 /* InfoViewController.swift in Sources */,
 				BC9CA14026C3F1E500F0BD1E /* PostTableViewCell.swift in Sources */,
 				BC12CA2826C7DA470080A3BB /* Photos.swift in Sources */,
+				BCA8C275284A44E7005F3C93 /* UserModel.swift in Sources */,
 				060782CA250CEE7200A87020 /* Post.swift in Sources */,
 				BC2CD60E26AAC576000A144E /* ProfileViewController.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
+				BCA8C273284A44B9005F3C93 /* LoginHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCA8C276284A4E3F005F3C93 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCA8C284284A4E5D005F3C93 /* LoginTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BCA8C27F284A4E3F005F3C93 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 060782AD250CE27700A87020 /* Navigation */;
+			targetProxy = BCA8C27E284A4E3F005F3C93 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		060782B7250CE27700A87020 /* Main.storyboard */ = {
@@ -381,6 +481,44 @@
 			};
 			name = Release;
 		};
+		BCA8C281284A4E3F005F3C93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.NavigationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/Navigation";
+			};
+			name = Debug;
+		};
+		BCA8C282284A4E3F005F3C93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-.NavigationTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/Navigation";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -398,6 +536,15 @@
 			buildConfigurations = (
 				060782C3250CE27A00A87020 /* Debug */,
 				060782C4250CE27A00A87020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BCA8C280284A4E3F005F3C93 /* Build configuration list for PBXNativeTarget "NavigationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCA8C281284A4E3F005F3C93 /* Debug */,
+				BCA8C282284A4E3F005F3C93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

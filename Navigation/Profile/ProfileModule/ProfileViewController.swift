@@ -3,26 +3,32 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    let user: User
+    
     let profileTable = UITableView(frame: .zero, style: .grouped)
-    private var postItem: [PostSection] = [] {
+    private var postItem: [Post] = [] {
         didSet {
             profileTable.reloadData()
         }
     }
     let profileHW = ProfileHederView()
-
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        view.backgroundColor = .white
-        view.addSubview(profileTable)
-        self.profileTable.translatesAutoresizingMaskIntoConstraints = false
         self.profileTable.register(PostTableViewCell.self, forCellReuseIdentifier: String(describing: PostTableViewCell.self))
         self.profileTable.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         self.profileTable.dataSource = self
         self.profileTable.delegate = self
-        self.profileTable.reloadData()
         
         profileHW.avatar.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(tapAvatar))
@@ -34,15 +40,16 @@ class ProfileViewController: UIViewController {
         
         self.postItem = Posts.posts
         
-        let refresh = UIRefreshControl()
-        self.profileTable.refreshControl = refresh
-        
         self.profileHW.avatarView.frame = CGRect(x: profileTable.frame.minX, y: profileTable.frame.minY, width: view.frame.width, height: view.frame.height)
         
         setupView()
     }
     
     func setupView() {
+        
+        view.backgroundColor = .white
+        view.addSubview(profileTable)
+        self.profileTable.translatesAutoresizingMaskIntoConstraints = false
         
         let constraints = [
             profileTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -94,11 +101,11 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController:UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.postItem.count
+        1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.postItem[section].posts.count + 1
+        self.postItem.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -107,7 +114,7 @@ extension ProfileViewController:UITableViewDataSource{
             let cell = profileTable.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
             return cell
         default : let cell = profileTable.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
-            cell.post = self.postItem[indexPath.section].posts[indexPath.row - 1]
+            cell.post = self.postItem[indexPath.row - 1]
             return cell
         }
     }
