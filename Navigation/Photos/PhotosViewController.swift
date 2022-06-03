@@ -26,7 +26,7 @@ class PhotosViewController: UIViewController {
         return photoCollection
     }()
     
-    private var photoSection:[PhotoSection] = [] {
+    private var photoSection:[Photo] = [] {
         didSet {
             photoCollection.reloadData()
         }
@@ -71,7 +71,7 @@ extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = photoCollection.dequeueReusableCell(withReuseIdentifier: String(describing: PhotosCollectionViewCell.self), for: indexPath) as! PhotosCollectionViewCell
-        cell.photos = self.photoSection[indexPath.section].photo[indexPath.row]
+        cell.photos = self.photoSection[indexPath.row]
         return cell
     }
     

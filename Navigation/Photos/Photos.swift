@@ -2,14 +2,8 @@ struct Photo {
     let photo: String
 }
 
-struct PhotoSection {
-    let photo: [Photo]
-}
-
 struct Photos {
     static let photos = [
-        PhotoSection(
-            photo: [
                 Photo(photo: "fry1"),
                 Photo(photo: "fry2"),
                 Photo(photo: "fry3"),
@@ -31,6 +25,4 @@ struct Photos {
                 Photo(photo: "fry19"),
                 Photo(photo: "fry20"),
             ]
-        )
-    ]
 }
