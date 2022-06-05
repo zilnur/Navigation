@@ -20,7 +20,7 @@ class ProfileHederView: UIView {
         return view
     }()
     
-    let button: UIButton = {
+    lazy var  button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.backgroundColor = UIColor.systemBlue.cgColor
@@ -52,7 +52,7 @@ class ProfileHederView: UIView {
         return label
     }()
     
-    let statusTextField: UITextField = {
+    lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
