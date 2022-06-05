@@ -2,6 +2,8 @@
 import UIKit
 
 class LoginInViewController: UIViewController {
+    
+    let localAuthorizationService = LocalAuthorizationService()
 
     let scroll = UIScrollView()
     let logo = UIImageView(image:UIImage(named: "logo"))
@@ -36,7 +38,7 @@ class LoginInViewController: UIViewController {
         passTF.placeholder = "Password"
         return passTF
     }()
-    var loginButton : UIButton = {
+    lazy var loginButton : UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "Color")
         button.setTitle("Log In", for: .normal)
@@ -54,6 +56,24 @@ class LoginInViewController: UIViewController {
         return button
     }()
     
+    lazy var bioButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(named: "Color")
+        button.tintColor = .white
+        button.layer.cornerRadius = 10
+        button.alpha = 1
+        if button.isSelected == true {
+            button.alpha = 0.8
+        } else if button.isEnabled == false {
+            button.alpha = 0.8
+        } else if button.isHighlighted == true {
+            button.alpha = 0.8
+        }
+        button.addTarget(self, action: #selector(toProfileBio), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,10 +87,21 @@ class LoginInViewController: UIViewController {
         scroll.addSubview(login)
         scroll.addSubview(pass)
         scroll.addSubview(loginButton)
-        
+        print(localAuthorizationService.context.biometryType)
         setupView()
         
         func setupView() {
+            if localAuthorizationService.canUserBio {
+                scroll.addSubview(bioButton)
+            }
+            switch localAuthorizationService.context.biometryType {
+            case .faceID:
+                bioButton.setBackgroundImage(UIImage(systemName: "faceid"), for: .normal)
+            case .touchID:
+                bioButton.setBackgroundImage(UIImage(systemName: "touchid"), for: .normal)
+            default: break
+            }
+            
             let constrains = [
                 scroll.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
                 scroll.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -94,11 +125,23 @@ class LoginInViewController: UIViewController {
                 
                 loginButton.leadingAnchor.constraint(equalTo: scroll.leadingAnchor, constant: 16),
                 loginButton.topAnchor.constraint(equalTo: pass.bottomAnchor, constant: 16),
-                loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                loginButton.heightAnchor.constraint(equalToConstant: 50)
-                
+                loginButton.heightAnchor.constraint(equalToConstant: 50),
             ]
             NSLayoutConstraint.activate(constrains)
+            
+            switch localAuthorizationService.canUserBio {
+            case true:
+                NSLayoutConstraint.activate([
+                    loginButton.trailingAnchor.constraint(equalTo: bioButton.leadingAnchor, constant: -16),
+                    
+                    bioButton.topAnchor.constraint(equalTo: pass.bottomAnchor, constant: 16),
+                    bioButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+                    bioButton.widthAnchor.constraint(equalToConstant: 50),
+                    bioButton.heightAnchor.constraint(equalToConstant: 50)
+                ])
+            case false:
+                loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
+            }
         }
     }
     
@@ -126,11 +169,33 @@ class LoginInViewController: UIViewController {
     
     @objc func toProfile() {
         if login.text != "" && pass.text != "" {
-            let profile = ProfileViewController()
-            navigationController?.pushViewController(profile, animated: true)
+        let profileVC = ProfileViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
         } else {
-            login.placeholder = "Необходимо заполнить!"
-            pass.placeholder = "Необходимо заполнить!"
+            login.text = nil
+            pass.text = nil
+            login.placeholder = "Необходимо заполнить"
+            pass.placeholder = "Необходимо заполнить"
+        }
+    }
+    
+    @objc func toProfileBio() {
+        localAuthorizationService.authorizeIfPossible { result in
+            switch result {
+            case .success(true):
+                DispatchQueue.main.async {
+                    let profileVC = ProfileViewController()
+                    self.navigationController?.pushViewController(profileVC, animated: true)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Ошибка аутентификации", message: String(describing: error.localizedDescription), preferredStyle: .alert)
+                    let alertOK = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(alertOK)
+                    self.present(alert, animated: true)
+                }
+            default: break
+            }
         }
     }
 
