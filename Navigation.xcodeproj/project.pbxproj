@@ -22,6 +22,7 @@
 		BC12CA2826C7DA470080A3BB /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC12CA2726C7DA470080A3BB /* Photos.swift */; };
 		BC2CD60E26AAC576000A144E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CD60D26AAC576000A144E /* ProfileViewController.swift */; };
 		BC2CD61026AAC590000A144E /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2CD60F26AAC590000A144E /* ProfileHeaderView.swift */; };
+		BC7C4723284E3E6300B64C42 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7C4722284E3E6300B64C42 /* LocalNotificationsService.swift */; };
 		BC9CA14026C3F1E500F0BD1E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9CA13F26C3F1E500F0BD1E /* PostTableViewCell.swift */; };
 		BC9F642626BE6F3000604D6C /* LoginInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F642526BE6F3000604D6C /* LoginInViewController.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		BC12CA2726C7DA470080A3BB /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		BC2CD60D26AAC576000A144E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BC2CD60F26AAC590000A144E /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		BC7C4722284E3E6300B64C42 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		BC9CA13F26C3F1E500F0BD1E /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BC9F642526BE6F3000604D6C /* LoginInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
 				060782BF250CE27A00A87020 /* Info.plist */,
 				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
+				BC7C4722284E3E6300B64C42 /* LocalNotificationsService.swift */,
 				060782C7250CEE5D00A87020 /* PostViewController.swift */,
 			);
 			path = Navigation;
@@ -194,6 +197,7 @@
 				BC12CA2426C7D5690080A3BB /* PhotosViewController.swift in Sources */,
 				BC9F642626BE6F3000604D6C /* LoginInViewController.swift in Sources */,
 				BC2CD61026AAC590000A144E /* ProfileHeaderView.swift in Sources */,
+				BC7C4723284E3E6300B64C42 /* LocalNotificationsService.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				BC12CA2026C5BA5E0080A3BB /* PhotosTableViewCell.swift in Sources */,
 				060782B2250CE27700A87020 /* AppDelegate.swift in Sources */,
