@@ -17,7 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let loginVC = LoginInViewController()
         let loginNVC = UINavigationController(rootViewController: loginVC)
-        loginNVC.navigationBar.backgroundColor = .white
         loginVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 0)
         
         let feedVC = FeedViewController()

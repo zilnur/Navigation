@@ -6,7 +6,7 @@ class PostTableViewCell: UITableViewCell {
     var post: Post? {
         didSet {
             postAutor.text = post!.autor
-            postImage.image = UIImage(named: post!.image!)
+            postImage.image = post!.image
             postDescription.text = post!.description
             postLikes.text = "Likes: \(String(post!.likes!))"
             postViews.text = "Views: \(String(post!.views!))"
